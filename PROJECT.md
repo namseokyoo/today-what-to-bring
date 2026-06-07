@@ -6,7 +6,7 @@
 | product_name | 오늘 뭐 챙기지? |
 | appName | today-what-to-bring |
 | created_at | 2026-06-07 09:54 KST |
-| status | Gate 3 implementation plan PASS / Gate 4 scaffolding ready |
+| status | Gate 4 scaffolding PASS / Gate 5 domain model ready |
 | owner | SidequestLab / Core-directed Lab development |
 | canonical_workspace | `/Volumes/external/project/SidequestLab/projects/today-what-to-bring` |
 | previous_workspace | `/Users/namseokyoo/projects/toss-vibecoding-challenge` moved into Lab on 2026-06-07 |
@@ -51,9 +51,12 @@
 - Wireframe review: `docs/wireframes/today-what-to-bring-wireframe-review.md`
 - MVP implementation plan: `docs/plans/today-what-to-bring-mvp-implementation-plan.md`
 - Gate 3 plan review: `docs/reports/today-what-to-bring-plan-review.md`
+- Gate 4 scaffold report: `docs/reports/today-what-to-bring-scaffold-report.md`
+- Current handoff: `docs/reports/current-progress-2026-06-07-gate4-to-gate5.md`
 
 ## Gate status
 
 - Gate 2 Wireframe Gate: PASS (`blocker 없음`)
 - Gate 3 Implementation Plan Gate: PASS (`no blockers`)
-- Current next gate: Gate 4 Scaffolding Gate
+- Gate 4 Scaffolding Gate: PASS (`dependency-risk note`)
+- Current next gate: Gate 5 Domain Model Gate
