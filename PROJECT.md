@@ -6,7 +6,7 @@
 | product_name | 오늘 뭐 챙기지? |
 | appName | today-what-to-bring |
 | created_at | 2026-06-07 09:54 KST |
-| status | PRD locked / Wireframe planning |
+| status | Gate 2 wireframe PASS / Gate 3 implementation planning ready |
 | owner | SidequestLab / Core-directed Lab development |
 | canonical_workspace | `/Volumes/external/project/SidequestLab/projects/today-what-to-bring` |
 | previous_workspace | `/Users/namseokyoo/projects/toss-vibecoding-challenge` moved into Lab on 2026-06-07 |
@@ -46,10 +46,11 @@
 - Community research: `docs/community-painpoints-research.md`
 - Wireframe plan: `docs/wireframe-production-plan.md`
 - Development sequence/gates: `docs/plans/development-sequence-and-gates.md`
+- Wireframe spec: `docs/wireframes/today-what-to-bring-wireframe-spec.md`
+- Static wireframe: `docs/wireframes/today-what-to-bring-wireframe.html`
+- Wireframe review: `docs/wireframes/today-what-to-bring-wireframe-review.md`
 
-## Current next gate
+## Gate status
 
-1. `docs/wireframes/today-what-to-bring-wireframe-spec.md` 작성
-2. `docs/wireframes/today-what-to-bring-wireframe.html` 제작
-3. `docs/wireframes/today-what-to-bring-wireframe-review.md`로 PRD 대비 리뷰
-4. 리뷰 반영 후 Apps in Toss 프로젝트 생성/구현 Gate 진입
+- Gate 2 Wireframe Gate: PASS (`blocker 없음`)
+- Current next gate: Gate 3 Implementation Plan Gate
