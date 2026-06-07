@@ -6,7 +6,7 @@ Gate 9 Build/Submission Gate: **READY FOR CONSOLE/SANDBOX, NOT YET SUBMITTED**
 
 - Date: 2026-06-07 KST
 - Executor: Core
-- Commit tested before this report: `426b567`
+- Commit tested before this report: `1d5e742`
 - Local build artifact: `app/today-what-to-bring.ait`
 - Must-fix before actual submission: **0**
 - Sandbox-only checks remaining: Toss console upload, QR/app scheme test, iOS/Android Toss app verification
@@ -52,7 +52,7 @@ Source: `app/granite.config.ts`, `app/.granite/app.json`
 | `primaryColor` | `#E0B20C` | PASS |
 | `permissions` | `[]` | PASS |
 | `brand.icon` | `https://raw.githubusercontent.com/namseokyoo/today-what-to-bring/main/app/public/app-icon.png` | PASS |
-| icon asset | `app/public/app-icon.png`, 512×512 PNG, 260,796 bytes | PASS |
+| icon asset | `app/public/app-icon.png`, 512×512 PNG, 260,796 bytes, simplified bag/check silhouette | PASS |
 
 ## Submission copy draft
 
@@ -113,7 +113,7 @@ Source: `app/granite.config.ts`, `app/.granite/app.json`
 | challenge theme linkage | PASS | copy above |
 | pre-2026-06-08 existing miniapp resubmission | PASS by project history | new repo/project for this challenge |
 | `.ait` generated | PASS | `app/today-what-to-bring.ait` |
-| `.ait` under 100MB uncompressed checklist limit | PASS | 22,304,002 bytes listing total |
+| `.ait` under 100MB uncompressed checklist limit | PASS | 22,565,550 bytes listing total |
 | local final smoke | PASS | Gate 8 QA report |
 | Toss sandbox upload | Gate 9 remaining | requires console/session access |
 | Toss QR/app scheme final test | Gate 9 remaining | after console upload |
