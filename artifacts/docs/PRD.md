@@ -5,7 +5,7 @@
 **기준 플랜:** `/Users/namseokyoo/.hermes/plans/2026-06-06_012130-toss-what-to-bring-miniapp.md`  
 **출품 대상:** 앱인토스 6월 바이브코딩 챌린지 — “일상이 편해지는 순간”  
 **제품명:** 오늘 뭐 챙기지?  
-**출품/콘솔 appName:** `what-to-bring`  
+**출품/콘솔 appName:** `today-what-to-bring`  
 **컨셉:** 오늘 나갈 때도, 내일 떠날 때도 빠뜨리지 않게 도와주는 상황별 준비물 체크리스트 Toss 미니앱
 
 ---
@@ -67,8 +67,8 @@
   - 콘솔 등록 정보와 `appName`, `displayName`, `icon`, `primaryColor`를 일치시킨다.
   - MVP는 권한을 쓰지 않으므로 `permissions: []`를 기본으로 둔다.
   - WebView 개발 서버/빌드 명령은 공식 템플릿 생성 후 실제 `granite.config.ts` 기준으로 확정한다.
-- 앱 식별자: `appName`; 본 프로젝트는 `what-to-bring`으로 확정한다. 딥링크는 `intoss://what-to-bring`
-- 테스트용 private 딥링크: `intoss-private://what-to-bring`
+- 앱 식별자: `appName`; 본 프로젝트는 `today-what-to-bring`으로 확정한다. 딥링크는 `intoss://today-what-to-bring`
+- 테스트용 private 딥링크: `intoss-private://today-what-to-bring`
 - SDK: `@apps-in-toss/web-framework`
 - Analytics: 공식 문서 버전 차이가 있으므로 설치 SDK 기준으로 확인한다. 현재 레퍼런스는 `Analytics.init` 후 `Analytics.Press`/`Analytics.Impression`/`Analytics.Area` 사용을 안내하고, 로그 가이드는 `Analytics.click`/`Analytics.impression` 예시도 제공한다. 구현 시 실제 패키지 타입을 기준으로 이벤트 래퍼를 만든다. 페이지 이동 로그는 자동 기록 전제
 - TDS WebView 패키지: `@toss/tds-mobile`, `@toss/tds-mobile-ait`, `@emotion/react`, `react`, `react-dom`
@@ -670,7 +670,7 @@ MVP 카드 수는 단순 리스트 추가 비용이 작으므로, 실제로 써�
 
 ## 7.7 MVP 기술스택
 - Platform: Apps in Toss WebView
-- Scaffolding: `npx create-ait-app what-to-bring`
+- Scaffolding: `npx create-ait-app today-what-to-bring`
 - Language: TypeScript
 - UI: React 18 + Vite
 - SDK: `@apps-in-toss/web-framework`
@@ -1036,7 +1036,7 @@ type AppStorage = {
 ### 10.1 저장/병합 규칙
 
 - `TemplateRoutine`은 앱 코드에 포함되는 기본 템플릿 원본이다.
-- Storage key namespace는 `what-to-bring:v1:app-storage` 하나를 기본으로 하고, 마이그레이션 필요 시 `schemaVersion`으로 분기한다.
+- Storage key namespace는 `today-what-to-bring:v1:app-storage` 하나를 기본으로 하고, 마이그레이션 필요 시 `schemaVersion`으로 분기한다.
 - `UserRoutineOverride`만 Apps in Toss Storage에 저장한다.
 - 화면 표시 시 `TemplateRoutine.defaultItems + UserRoutineOverride.customItems`를 병합한다.
 - 체크 상태는 `SessionCheckState`로만 관리하고 Storage에 저장하지 않는다. 바텀시트 닫힘 또는 앱 재진입 시 초기화한다.
@@ -1085,7 +1085,7 @@ function logEvent(name: AnalyticsEventName, payload: Record<string, string | num
 ## 11. 검수/출시 체크리스트
 
 ### 11.1 앱인토스 제출 전
-- [ ] 신청폼 `appName`, 앱인토스 콘솔 `appName`, `granite.config.ts`의 `appName`이 `what-to-bring`으로 일치
+- [ ] 신청폼 `appName`, 앱인토스 콘솔 `appName`, `granite.config.ts`의 `appName`이 `today-what-to-bring`으로 일치
 - [ ] 앱 이름/미니앱 설명/챌린지 주제 연관성 문구가 신청폼과 PRD/서비스 카피에서 충돌하지 않음
 - [ ] 앱 아이콘 URL 설정 및 직접 제작/사용권 확인
 - [ ] `displayName` 설정

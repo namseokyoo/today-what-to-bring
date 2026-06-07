@@ -4,7 +4,7 @@
 |---|---|
 | project_name | today-what-to-bring |
 | product_name | 오늘 뭐 챙기지? |
-| appName | what-to-bring |
+| appName | today-what-to-bring |
 | created_at | 2026-06-07 09:54 KST |
 | status | PRD locked / Wireframe planning |
 | owner | SidequestLab / Core-directed Lab development |
