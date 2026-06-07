@@ -8,7 +8,7 @@ Gate 9 Build/Submission Gate: **READY FOR CONSOLE/SANDBOX, NOT YET SUBMITTED**
 - Executor: Core
 - Commit tested before this report: `426b567`
 - Local build artifact: `app/today-what-to-bring.ait`
-- Must-fix before actual submission: **1 — app icon URL must be set to a project-owned icon asset URL**
+- Must-fix before actual submission: **0**
 - Sandbox-only checks remaining: Toss console upload, QR/app scheme test, iOS/Android Toss app verification
 
 ## Build artifact
@@ -23,21 +23,21 @@ Last verified result from Gate 8 / Gate 9 prep:
 
 ```text
 AIT build completed (today-what-to-bring.ait)
-deploymentId: 019ea270-3dc7-7c65-935d-f0e64e6534c1
+deploymentId: 019ea3f1-267f-7cdc-8c8b-207febd54575
 ```
 
 Artifact inspection:
 
 ```text
-today-what-to-bring.ait 4078503 bytes
-uncompressed archive listing total: 22304002 bytes
+today-what-to-bring.ait 4082665 bytes
+uncompressed archive listing total: 22310080 bytes
 ```
 
 Result:
 
 - `.ait` exists: PASS
-- `.ait` compressed size: 4,078,503 bytes: PASS
-- `.ait` uncompressed listing size: 22,304,002 bytes: PASS, below 100MB checklist limit
+- `.ait` compressed size: 4,082,665 bytes: PASS
+- `.ait` uncompressed listing size: 22,310,080 bytes: PASS, below 100MB checklist limit
 - Archive contains RN 0.84.0 / 0.72.6 iOS+Android bundles and web assets: PASS
 
 ## App metadata check
@@ -51,7 +51,8 @@ Source: `app/granite.config.ts`, `app/.granite/app.json`
 | `displayName` | `오늘 뭐 챙기지?` | PASS |
 | `primaryColor` | `#E0B20C` | PASS |
 | `permissions` | `[]` | PASS |
-| `brand.icon` | empty string | **MUST FIX before submission** |
+| `brand.icon` | `https://raw.githubusercontent.com/namseokyoo/today-what-to-bring/main/app/public/app-icon.png` | PASS |
+| icon asset | `app/public/app-icon.png`, 512×512 PNG, 5,326 bytes | PASS |
 
 ## Submission copy draft
 
@@ -102,7 +103,7 @@ Source: `app/granite.config.ts`, `app/.granite/app.json`
 | `appName` matches repo/config/PRD | PASS | `today-what-to-bring` |
 | display name set | PASS | `오늘 뭐 챙기지?` |
 | primary color set | PASS | `#E0B20C` |
-| icon URL set | **MUST FIX** | `brand.icon` currently empty |
+| icon URL set | PASS | project-owned GitHub raw URL in `brand.icon` |
 | permissions minimal | PASS | `[]` |
 | external link/iframe dependency | PASS | none found in app flow |
 | 개인정보/위치/연락처/의료정보 수집 | PASS | not collected |
@@ -121,18 +122,15 @@ Source: `app/granite.config.ts`, `app/.granite/app.json`
 
 ## Required next action before console submission
 
-1. Create or provide a project-owned app icon asset.
-2. Host it at a stable URL or confirm Apps in Toss accepts a project/public asset path for `brand.icon`.
-3. Update `app/granite.config.ts` `brand.icon` from `""` to the final icon URL/path.
-4. Re-run:
+1. Use the committed app icon URL in `brand.icon`:
 
-```sh
-npm run lint
-npx tsc --noEmit
-npm run build
+```text
+https://raw.githubusercontent.com/namseokyoo/today-what-to-bring/main/app/public/app-icon.png
 ```
 
-5. Re-check artifact size and proceed to Toss console/sandbox upload.
+2. Proceed to Toss console/sandbox upload.
+3. Run the QR/app scheme test script below on real Toss app.
+4. If Toss console rejects GitHub raw icon URLs, replace `brand.icon` with a Toss-accepted stable hosted URL and rebuild.
 
 ## Console/sandbox test script
 
@@ -153,4 +151,4 @@ After upload, run this manual test in Toss app:
 
 ## Gate 9 decision
 
-Local package preparation is mostly ready, but **actual submission should not proceed until `brand.icon` is set** and Toss sandbox upload/QR verification is completed.
+Local package preparation is ready for Toss console/sandbox upload. Actual submission still requires Toss sandbox upload, QR/app scheme verification, and native back/safe-area checks on the real Toss app.
