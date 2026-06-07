@@ -8,7 +8,7 @@
 **appName:** `today-what-to-bring`  
 **Repo:** https://github.com/namseokyoo/today-what-to-bring  
 **기준 PRD:** `docs/prd-today-what-to-bring-mvp-production.md`  
-**현재 상태:** Gate 7 Storage/SDK 완료 / Gate 8 QA Gate 준비
+**현재 상태:** Gate 8 QA 완료 / Gate 9 Build·Submission Gate 준비
 
 ---
 
@@ -391,14 +391,14 @@ npx create-ait-app today-what-to-bring
 
 ## 바로 다음 실행 항목
 
-현재는 Gate 7이 완료되어 `main`에 push된 상태이므로 다음 작업은 Gate 8 QA다.
+현재는 Gate 8 QA가 완료되어 `main`에 push 준비 중인 상태이므로 다음 작업은 Gate 9 Build/Submission Gate다.
 
-1. `docs/reports/today-what-to-bring-mvp-qa.md` 작성
-2. `docs/reports/gate-8-sdk-risk-log.md` 작성
-3. lint/typecheck/build 재검증
-4. Storage/Analytics/back fallback/SafeArea/mobile QA 수행
-5. must-fix bug가 있으면 fix commit 후 재검증
-6. blocker 0개 확인 후 Gate 9 Build/Submission Gate 진입
+1. `docs/reports/today-what-to-bring-submission-check.md` 작성
+2. `.ait` artifact size/metadata 확인
+3. 앱인토스 콘솔/샌드박스 업로드 절차 확인
+4. 제출용 앱 설명/챌린지 설명 작성
+5. Toss 앱 QR/app scheme 실기기 테스트 항목 기록
+6. blocker 0개 확인 후 제출/검토 요청
 
 ---
 
