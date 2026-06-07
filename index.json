@@ -1,0 +1,26 @@
+{
+  "project_name": "what-to-bring",
+  "product_name": "오늘 뭐 챙기지?",
+  "app_name": "what-to-bring",
+  "status": "prd_locked_wireframe_planning",
+  "created_at": "2026-06-07T09:54:38+09:00",
+  "canonical_workspace": "/Volumes/external/project/SidequestLab/projects/what-to-bring",
+  "previous_workspace": "/Users/namseokyoo/projects/toss-vibecoding-challenge",
+  "platform": "Apps in Toss WebView",
+  "challenge": "앱인토스 6월 바이브코딩 챌린지",
+  "key_docs": {
+    "prd": "docs/prd-today-what-to-bring-mvp-production.md",
+    "community_research": "docs/community-painpoints-research.md",
+    "wireframe_plan": "docs/wireframe-production-plan.md"
+  },
+  "next_gate": "wireframe",
+  "mvp_non_goals": [
+    "login",
+    "server_sync",
+    "push_notifications",
+    "weather_api",
+    "ai_recommendation",
+    "medical_advice_or_booking",
+    "rewards_or_payments_or_ads"
+  ]
+}
