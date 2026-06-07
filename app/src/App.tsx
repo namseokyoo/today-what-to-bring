@@ -1,10 +1,13 @@
-import { useMemo, useState, type FormEvent } from "react";
+import { useEffect, useMemo, useState, type FormEvent } from "react";
 import "./App.css";
+import {
+  createAnalyticsAdapter,
+  type AnalyticsPayload,
+} from "./adapters/analyticsAdapter";
 import {
   addCustomItemToOverride,
   categoryMetadata,
   clearSessionChecks,
-  createDefaultAppStorage,
   createDefaultSessionCheckState,
   createOpenSessionCheckState,
   createUserRoutineOverride,
@@ -12,6 +15,7 @@ import {
   homeViewModeLabels,
   maxRecentRoutineCount,
   mergeTemplateRoutines,
+  normalizeCustomItemLabel,
   prepFlowMetadata,
   removeCustomItemFromOverride,
   resolveRoutineOrder,
@@ -30,6 +34,8 @@ import type {
   UserRoutineOverride,
   ViewModeGroupId,
 } from "./domain";
+import { usePersistentAppStorage } from "./hooks/usePersistentAppStorage";
+import { useTossShell } from "./hooks/useTossShell";
 
 type GroupMeta = {
   readonly id: ViewModeGroupId;
@@ -45,9 +51,8 @@ const groupMetaByViewMode: Readonly<
 };
 
 function App() {
-  const [storage, setStorage] = useState<AppStorageV1>(() =>
-    createDefaultAppStorage(),
-  );
+  const { storage, setStorage, storageWarning } = usePersistentAppStorage();
+  const analytics = useMemo(() => createAnalyticsAdapter(), []);
   const [query, setQuery] = useState("");
   const [sessionState, setSessionState] = useState<SessionCheckState>(() =>
     createDefaultSessionCheckState(),
@@ -86,7 +91,46 @@ function App() {
     .map((recent) => routineById.get(recent.routineId))
     .filter((routine): routine is MergedRoutine => Boolean(routine));
 
+  useTossShell({
+    onBack: () => {
+      if (selectedRoutine) {
+        closeChecklist();
+        return true;
+      }
+
+      if (query.length > 0) {
+        setQuery("");
+        return true;
+      }
+
+      return false;
+    },
+  });
+
+  useEffect(() => {
+    analytics.track("screen_viewed", {
+      view_mode: storage.homeViewMode,
+    });
+  }, [analytics, storage.homeViewMode]);
+
+  useEffect(() => {
+    if (!isSearching) {
+      return;
+    }
+
+    analytics.track("search_performed", {
+      query_length: normalizedQuery.length,
+      result_count: searchResults.length,
+    });
+  }, [analytics, isSearching, normalizedQuery.length, searchResults.length]);
+
   function setViewMode(homeViewMode: HomeViewMode) {
+    if (homeViewMode !== storage.homeViewMode) {
+      analytics.track("view_mode_changed", {
+        view_mode: homeViewMode,
+      });
+    }
+
     setStorage((current) => ({
       ...current,
       homeViewMode,
@@ -94,6 +138,9 @@ function App() {
   }
 
   function openRoutine(routineId: RoutineId) {
+    const routine = routineById.get(routineId);
+
+    analytics.track("routine_opened", getRoutineAnalyticsPayload(routine));
     setSessionState(createOpenSessionCheckState(routineId));
     setStorage((current) => ({
       ...current,
@@ -106,20 +153,44 @@ function App() {
   }
 
   function clearChecks() {
+    analytics.track("reset_action_clicked", {
+      routine_id: selectedRoutine?.card.id ?? null,
+      reset_scope: "checks",
+    });
     setSessionState((current) => clearSessionChecks(current));
   }
 
   function toggleCheck(itemId: string) {
+    const checklistItem = selectedRoutine?.allItems.find(
+      (item) => item.id === itemId,
+    );
+
+    analytics.track("routine_checked", {
+      ...getRoutineAnalyticsPayload(selectedRoutine),
+      checked: !checkedItemIds.has(itemId),
+      item_origin: checklistItem?.type ?? null,
+    });
     setSessionState((current) => toggleSessionCheck(current, itemId));
   }
 
   function addCustomItem(routineId: RoutineId, label: string) {
+    const normalizedLabel = normalizeCustomItemLabel(label);
+
+    if (normalizedLabel.length === 0) {
+      return;
+    }
+
     const customItem: CustomItem = {
       id: createCustomItemId(routineId),
-      label,
+      label: normalizedLabel,
       createdAt: new Date().toISOString(),
     };
+    const routine = routineById.get(routineId);
 
+    analytics.track("custom_item_added", {
+      ...getRoutineAnalyticsPayload(routine),
+      item_origin: "custom",
+    });
     setStorage((current) => ({
       ...current,
       routineOverrides: upsertRoutineOverride(
@@ -134,6 +205,12 @@ function App() {
   }
 
   function deleteCustomItem(routineId: RoutineId, customItemId: string) {
+    const routine = routineById.get(routineId);
+
+    analytics.track("custom_item_deleted", {
+      ...getRoutineAnalyticsPayload(routine),
+      item_origin: "custom",
+    });
     setStorage((current) => {
       const override = findRoutineOverride(current.routineOverrides, routineId);
 
@@ -162,6 +239,12 @@ function App() {
     customItemId: string,
     direction: "up" | "down",
   ) {
+    const routine = routineById.get(routineId);
+
+    analytics.track("custom_item_reordered", {
+      ...getRoutineAnalyticsPayload(routine),
+      item_origin: "custom",
+    });
     setStorage((current) => {
       const override = findRoutineOverride(current.routineOverrides, routineId);
 
@@ -197,6 +280,10 @@ function App() {
     routineId: RoutineId,
     customItemIds: readonly string[],
   ) {
+    analytics.track("reset_action_clicked", {
+      routine_id: routineId,
+      reset_scope: "routine_custom_items",
+    });
     setStorage((current) => ({
       ...current,
       routineOverrides: current.routineOverrides.filter(
@@ -214,6 +301,11 @@ function App() {
   return (
     <div className="app-shell">
       <main className="home-screen" aria-label="오늘 뭐 챙기지 홈">
+        {storageWarning ? (
+          <p className="storage-warning" role="status">
+            {storageWarning.message}
+          </p>
+        ) : null}
         <header className="home-header">
           <p className="eyebrow">상황별 준비물 체크리스트</p>
           <h1>오늘 뭐 챙기지?</h1>
@@ -908,6 +1000,20 @@ function createRecentRoutines(
     nextRoutine,
     ...recentRoutines.filter((recent) => recent.routineId !== routineId),
   ].slice(0, maxRecentRoutineCount);
+}
+
+function getRoutineAnalyticsPayload(
+  routine: MergedRoutine | undefined,
+): AnalyticsPayload {
+  if (!routine) {
+    return {};
+  }
+
+  return {
+    routine_id: routine.card.id,
+    category: routine.card.categoryGroup,
+    prep_flow: routine.card.prepFlowGroup,
+  };
 }
 
 function matchesRoutine(
