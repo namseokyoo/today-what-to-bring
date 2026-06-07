@@ -20,13 +20,15 @@ GitHub: https://github.com/namseokyoo/today-what-to-bring
 - `docs/wireframes/today-what-to-bring-wireframe-spec.md` — Gate 2 와이어프레임 스펙
 - `docs/wireframes/today-what-to-bring-wireframe.html` — Gate 2 정적 모바일 와이어프레임
 - `docs/wireframes/today-what-to-bring-wireframe-review.md` — Gate 2 PRD 대비 리뷰
+- `docs/plans/today-what-to-bring-mvp-implementation-plan.md` — Gate 3 MVP 구현 계획
+- `docs/reports/today-what-to-bring-plan-review.md` — Gate 3 구현 계획 리뷰
 
 ## 다음 작업
 
-1. Gate 3 MVP 구현 계획서 작성
-2. 앱 소스 위치와 Apps in Toss 스캐폴딩 방식 확정
-3. 데이터 모델/Storage/Analytics/QA task 분해
-4. 구현 계획 리뷰 통과 후 Apps in Toss 템플릿 생성
+1. Gate 4 Apps in Toss 스캐폴딩 진행
+2. `app/` 하위에 공식 템플릿 격리 생성/병합
+3. `granite.config.ts`의 `appName`/`displayName` 확인
+4. dev/build 기본 동작 검증
 
 ## MVP 경계
 
