@@ -10,6 +10,7 @@
 | owner | SidequestLab / Core-directed Lab development |
 | canonical_workspace | `/Volumes/external/project/SidequestLab/projects/what-to-bring` |
 | previous_workspace | `/Users/namseokyoo/projects/toss-vibecoding-challenge` moved into Lab on 2026-06-07 |
+| GitHub | https://github.com/namseokyoo/what-to-bring |
 
 ## Description
 

@@ -10,6 +10,8 @@
 
 ## 주요 문서
 
+GitHub: https://github.com/namseokyoo/what-to-bring
+
 - `PROJECT.md` — Lab 프로젝트 카드
 - `docs/prd-today-what-to-bring-mvp-production.md` — 기준 PRD
 - `docs/community-painpoints-research.md` — 커뮤니티/공개 웹 불편 사례 조사

@@ -7,6 +7,7 @@
   "canonical_workspace": "/Volumes/external/project/SidequestLab/projects/what-to-bring",
   "previous_workspace": "/Users/namseokyoo/projects/toss-vibecoding-challenge",
   "platform": "Apps in Toss WebView",
+  "github": "https://github.com/namseokyoo/what-to-bring",
   "challenge": "앱인토스 6월 바이브코딩 챌린지",
   "key_docs": {
     "prd": "docs/prd-today-what-to-bring-mvp-production.md",
