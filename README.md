@@ -14,8 +14,9 @@ GitHub: https://github.com/namseokyoo/today-what-to-bring
 
 - `PROJECT.md` — Lab 프로젝트 카드
 - `docs/prd-today-what-to-bring-mvp-production.md` — 기준 PRD
-- `docs/community-painpoints-research.md` — 커뮤니티/공개 웹 불편 사례 조사
-- `docs/wireframe-production-plan.md` — 와이어프레임 제작 플랜
+- `docs/community-painpoints-research.md` — 공개 커뮤니티 painpoint 조사
+- `docs/wireframe-production-plan.md` — 다음 gate용 와이어프레임 제작 계획
+- `docs/plans/development-sequence-and-gates.md` — 개발 순서 및 단계별 Gate 체크리스트
 
 ## 다음 작업
 

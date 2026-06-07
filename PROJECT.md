@@ -45,6 +45,7 @@
 - PRD: `docs/prd-today-what-to-bring-mvp-production.md`
 - Community research: `docs/community-painpoints-research.md`
 - Wireframe plan: `docs/wireframe-production-plan.md`
+- Development sequence/gates: `docs/plans/development-sequence-and-gates.md`
 
 ## Current next gate
 
