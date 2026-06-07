@@ -23,21 +23,21 @@ Last verified result from Gate 8 / Gate 9 prep:
 
 ```text
 AIT build completed (today-what-to-bring.ait)
-deploymentId: 019ea3f1-267f-7cdc-8c8b-207febd54575
+deploymentId: 019ea401-f4c6-7549-95bd-7cb0677ae914
 ```
 
 Artifact inspection:
 
 ```text
-today-what-to-bring.ait 4082665 bytes
-uncompressed archive listing total: 22310080 bytes
+today-what-to-bring.ait 4403920 bytes
+uncompressed archive listing total: 22629545 bytes
 ```
 
 Result:
 
 - `.ait` exists: PASS
-- `.ait` compressed size: 4,082,665 bytes: PASS
-- `.ait` uncompressed listing size: 22,310,080 bytes: PASS, below 100MB checklist limit
+- `.ait` compressed size: 4,403,920 bytes: PASS
+- `.ait` uncompressed listing size: 22,629,545 bytes: PASS, below 100MB checklist limit
 - Archive contains RN 0.84.0 / 0.72.6 iOS+Android bundles and web assets: PASS
 
 ## App metadata check
@@ -52,7 +52,7 @@ Source: `app/granite.config.ts`, `app/.granite/app.json`
 | `primaryColor` | `#E0B20C` | PASS |
 | `permissions` | `[]` | PASS |
 | `brand.icon` | `https://raw.githubusercontent.com/namseokyoo/today-what-to-bring/main/app/public/app-icon.png` | PASS |
-| icon asset | `app/public/app-icon.png`, 512×512 PNG, 5,326 bytes | PASS |
+| icon asset | `app/public/app-icon.png`, 512×512 PNG, 324,791 bytes | PASS |
 
 ## Submission copy draft
 
