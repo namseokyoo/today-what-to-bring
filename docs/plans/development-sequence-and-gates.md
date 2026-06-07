@@ -8,7 +8,7 @@
 **appName:** `today-what-to-bring`  
 **Repo:** https://github.com/namseokyoo/today-what-to-bring  
 **기준 PRD:** `docs/prd-today-what-to-bring-mvp-production.md`  
-**현재 상태:** PRD locked / Wireframe Gate 준비
+**현재 상태:** Gate 7 Storage/SDK 완료 / Gate 8 QA Gate 준비
 
 ---
 
@@ -42,7 +42,7 @@
 | 5 | Domain Model Gate | 데이터/상태 모델 확정 | types, template data, tests | 모델 테스트 통과 |
 | 6 | MVP UI Gate | 핵심 화면 구현 | home/search/sheet/custom UI | 주요 사용자 플로우 동작 |
 | 7 | Storage & SDK Gate | 플랫폼 기능 연동 | Storage, Navigation, SafeArea, Analytics | 재진입/저장/딥링크 검증 |
-| 8 | QA Gate | 품질 검증 | QA report, bugfix commits | 제출 차단 버그 없음 |
+| 8 | QA Gate | 품질 검증 + Gate 7 조사 반영 | QA report, SDK/fallback risk log, bugfix commits | 제출 차단 버그 없음 |
 | 9 | Build/Submission Gate | 제출 준비 | `.ait` build, submission notes | 제출 패키지 검증 완료 |
 | 10 | Post-submit Gate | 회고/다음 버전 준비 | retrospective, roadmap | MVP 이후 범위 정리 |
 
@@ -286,9 +286,20 @@ npx create-ait-app today-what-to-bring
 
 **목적:** 제출 전 차단 버그와 정책 리스크를 제거한다.
 
+**Gate 7 조사 후 Gate 8에 반드시 반영할 내용:**
+
+- Native Toss `backEvent`/NavigationBar surface는 현재 로컬 SDK 타입에서 명확히 발견되지 않았다. Gate 8에서는 이 항목을 **제출 차단 버그가 아니라 sandbox 확인 필요 리스크**로 분류하되, browser `popstate`/Escape fallback이 바텀시트 닫기 → 검색어 초기화 → no-op 우선순서로 동작하는지 다시 검증한다.
+- Storage는 `today-what-to-bring:v1:app-storage` 키와 `AppStorageV1` schema helper를 기준으로 검증한다. `SessionCheckState`는 저장되지 않아야 하며, reload 후 체크 상태가 초기화되는 것이 정상이다.
+- Analytics는 allowlisted event name과 primitive payload만 허용한다. raw search query(`여권` 등)와 custom item label(`테스트 준비물` 등)이 event payload에 들어가지 않는지 QA에 포함한다.
+- Safe area는 CSS variable + `0px` fallback 구조다. 360~420px 모바일 폭에서 하단 바텀시트/CTA가 safe area padding 때문에 가려지지 않는지 시각 확인한다.
+- Local/mock storage fallback이 실제 사용자 흐름을 막지 않는지 확인한다. 저장 실패 경고는 한국어 non-blocking warning이어야 한다.
+- Gate 7에서 card order editing UI는 구현하지 않았다. Gate 8에서는 이를 submission blocker로 보지 않고 기존 Gate 6 copy와 MVP 범위의 defer 항목으로 유지한다.
+- Toss production/sandbox 제출 검증은 아직 수행하지 않았다. Gate 8은 로컬 QA와 risk log를 마무리하고, Gate 9에서 공식 제출 산출물/콘솔 설정 확인으로 넘긴다.
+
 ### 산출물
 
 - `docs/reports/today-what-to-bring-mvp-qa.md`
+- `docs/reports/gate-8-sdk-risk-log.md`
 - 필요 시 bugfix commits
 
 ### 체크리스트
@@ -301,13 +312,30 @@ npx create-ait-app today-what-to-bring
 - [ ] 모바일 화면 수동 QA가 통과한다.
 - [ ] 검색/empty/recent/reset edge case가 통과한다.
 - [ ] Storage 장애 fallback을 확인했다.
+- [ ] Storage payload에 `SessionCheckState`가 저장되지 않는 것을 확인했다.
+- [ ] reload 후 custom item/recent routine은 복원되고 checked state는 초기화되는 것을 확인했다.
+- [ ] Analytics payload에 raw search query/custom item label이 포함되지 않는 것을 확인했다.
+- [ ] browser `popstate`/Escape fallback 우선순서가 checklist sheet close → search clear → no-op 순서로 동작한다.
+- [ ] Native Toss backEvent/NavigationBar 미확인 항목은 risk log에 sandbox 확인 항목으로 남겼다.
+- [ ] deep link 상수 `intoss://today-what-to-bring` / `intoss-private://today-what-to-bring`가 코드와 문서에서 일치한다.
+- [ ] Safe area fallback이 모바일 폭 360~420px에서 CTA/바텀시트를 가리지 않는다.
 - [ ] 다크패턴/오해 유발/의료 판단성 문구가 없다.
 - [ ] 접근성 기본 기준: 터치 영역, 색 대비, 텍스트 크기를 확인했다.
 
 ### 통과 기준
 
 - `must fix` 또는 `blocker`가 0개다.
-- 제출 전 남은 이슈는 명시적으로 `defer` 처리되어 있다.
+- SDK surface 미확인, sandbox-only 확인 항목, MVP defer 항목이 risk log에서 분리되어 있다.
+- 제출 전 남은 이슈는 명시적으로 `defer` 또는 `Gate 9 확인`으로 처리되어 있다.
+
+### Gate 8 권장 실행 순서
+
+1. `npm run lint`, `npx tsc --noEmit`, `npm run build`를 재실행한다.
+2. 가능하면 기존 Gate 7 Playwright smoke를 정식 QA smoke script 또는 report 절차로 옮긴다.
+3. localStorage payload를 직접 확인해 schema version, custom item, recent routine, checked state 미저장을 검증한다.
+4. UI copy/policy scan으로 의료 판단성·위험 상황 오해·개인정보 저장 문구를 확인한다.
+5. 390px 기준과 360px/420px 폭에서 홈, 검색, 체크리스트 sheet, 저장 경고, empty state를 캡처 또는 수동 QA로 확인한다.
+6. SDK risk log에 `confirmed`, `fallback verified`, `needs Toss sandbox`, `deferred MVP`를 분리해 기록한다.
 
 ---
 
@@ -363,12 +391,14 @@ npx create-ait-app today-what-to-bring
 
 ## 바로 다음 실행 항목
 
-현재는 Gate 1이 사실상 완료된 상태이므로 다음 작업은 Gate 2다.
+현재는 Gate 7이 완료되어 `main`에 push된 상태이므로 다음 작업은 Gate 8 QA다.
 
-1. `docs/wireframes/today-what-to-bring-wireframe-spec.md` 작성
-2. `docs/wireframes/today-what-to-bring-wireframe.html` 제작
-3. `docs/wireframes/today-what-to-bring-wireframe-review.md` 작성
-4. review 통과 후 `docs/plans/today-what-to-bring-mvp-implementation-plan.md` 작성
+1. `docs/reports/today-what-to-bring-mvp-qa.md` 작성
+2. `docs/reports/gate-8-sdk-risk-log.md` 작성
+3. lint/typecheck/build 재검증
+4. Storage/Analytics/back fallback/SafeArea/mobile QA 수행
+5. must-fix bug가 있으면 fix commit 후 재검증
+6. blocker 0개 확인 후 Gate 9 Build/Submission Gate 진입
 
 ---
 

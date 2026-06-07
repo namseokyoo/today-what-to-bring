@@ -57,7 +57,7 @@ npx tsc --noEmit
 npm run build
 → PASS
 AIT build completed (today-what-to-bring.ait)
-deploymentId: 019ea21a-af28-7174-a5aa-017cbfe75872
+deploymentId: 019ea22d-cc97-7728-ae99-27024f4bbad4
 ```
 
 Automated local browser smoke was run with Playwright against the local dev server and Google Chrome executable.
