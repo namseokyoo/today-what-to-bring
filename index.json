@@ -1,13 +1,13 @@
 {
-  "project_name": "what-to-bring",
+  "project_name": "today-what-to-bring",
   "product_name": "오늘 뭐 챙기지?",
   "app_name": "what-to-bring",
   "status": "prd_locked_wireframe_planning",
   "created_at": "2026-06-07T09:54:38+09:00",
-  "canonical_workspace": "/Volumes/external/project/SidequestLab/projects/what-to-bring",
+  "canonical_workspace": "/Volumes/external/project/SidequestLab/projects/today-what-to-bring",
   "previous_workspace": "/Users/namseokyoo/projects/toss-vibecoding-challenge",
   "platform": "Apps in Toss WebView",
-  "github": "https://github.com/namseokyoo/what-to-bring",
+  "github": "https://github.com/namseokyoo/today-what-to-bring",
   "challenge": "앱인토스 6월 바이브코딩 챌린지",
   "key_docs": {
     "prd": "docs/prd-today-what-to-bring-mvp-production.md",

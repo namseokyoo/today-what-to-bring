@@ -5,12 +5,12 @@
 ## Workspace
 
 ```text
-/Volumes/external/project/SidequestLab/projects/what-to-bring
+/Volumes/external/project/SidequestLab/projects/today-what-to-bring
 ```
 
 ## 주요 문서
 
-GitHub: https://github.com/namseokyoo/what-to-bring
+GitHub: https://github.com/namseokyoo/today-what-to-bring
 
 - `PROJECT.md` — Lab 프로젝트 카드
 - `docs/prd-today-what-to-bring-mvp-production.md` — 기준 PRD

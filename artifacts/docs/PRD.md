@@ -126,7 +126,7 @@
 
 커뮤니티/공개 웹 불편 사례 1차 조사는 완료했으며, 결과 파일은 아래 위치에 기록한다.
 
-- 조사 파일: `/Volumes/external/project/SidequestLab/projects/what-to-bring/docs/community-painpoints-research.md`
+- 조사 파일: `/Volumes/external/project/SidequestLab/projects/today-what-to-bring/docs/community-painpoints-research.md`
 - PRD 반영 상태: MVP 카드 구성은 유지하고, 준비물 기본 템플릿을 소폭 보강한다.
 - 다음 단계: 추가 조사 확장이 아니라 **와이어프레임 Gate**로 이동한다.
 

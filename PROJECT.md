@@ -2,15 +2,15 @@
 
 | 항목 | 내용 |
 |---|---|
-| project_name | what-to-bring |
+| project_name | today-what-to-bring |
 | product_name | 오늘 뭐 챙기지? |
 | appName | what-to-bring |
 | created_at | 2026-06-07 09:54 KST |
 | status | PRD locked / Wireframe planning |
 | owner | SidequestLab / Core-directed Lab development |
-| canonical_workspace | `/Volumes/external/project/SidequestLab/projects/what-to-bring` |
+| canonical_workspace | `/Volumes/external/project/SidequestLab/projects/today-what-to-bring` |
 | previous_workspace | `/Users/namseokyoo/projects/toss-vibecoding-challenge` moved into Lab on 2026-06-07 |
-| GitHub | https://github.com/namseokyoo/what-to-bring |
+| GitHub | https://github.com/namseokyoo/today-what-to-bring |
 
 ## Description
 

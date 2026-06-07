@@ -1,7 +1,7 @@
-# Lab 프로젝트 등록 결정 — what-to-bring
+# Lab 프로젝트 등록 결정 — today-what-to-bring
 
 **일시:** 2026-06-07 09:54 KST  
-**결정:** 기존 `/Users/namseokyoo/projects/toss-vibecoding-challenge` 작업 폴더를 SidequestLab 프로젝트로 등록하고 canonical workspace를 Lab 경로 `/Volumes/external/project/SidequestLab/projects/what-to-bring`으로 전환한다.
+**결정:** 기존 `/Users/namseokyoo/projects/toss-vibecoding-challenge` 작업 폴더를 SidequestLab 프로젝트로 등록하고 canonical workspace를 Lab 경로 `/Volumes/external/project/SidequestLab/projects/today-what-to-bring`으로 전환한다.
 
 ## 배경
 
@@ -9,7 +9,7 @@
 
 ## 적용 범위
 
-- canonical workspace: `/Volumes/external/project/SidequestLab/projects/what-to-bring`
+- canonical workspace: `/Volumes/external/project/SidequestLab/projects/today-what-to-bring`
 - 이전 standalone workspace: `/Users/namseokyoo/projects/toss-vibecoding-challenge`는 Lab 경로로 이동 후 제거
 - Lab historian 구조 파일/디렉터리 생성
 - `_company/PROJECTS.md`에 진행중 Lab 프로젝트로 등록 예정
